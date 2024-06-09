@@ -4,11 +4,19 @@
 \alias{network_plot_histograms}
 \title{plot summary of a series of simulations}
 \usage{
-network_plot_histograms(s_dt)
+network_plot_histograms(
+  s_dt,
+  ref_dt = as.data.table(s_dt)[, .SD[.N, .(duration = t - 1, final_size = R)], keyby =
+    sample]
+)
 }
 \arguments{
-\item{s_dt}{a \code{data.table}, of the same structure as returned by
+\item{s_dt}{optional: a \code{data.table}, of the same structure as returned by
 \code{\link{network_sample_reed_frost}}}
+
+\item{ref_dt}{simulation outputs to be plotted; can be created from \code{s_dt},
+or directly provided as a \code{data.table} with \code{duration}, \code{final_size}, and
+\code{sample} columns}
 }
 \value{
 a patchwork'd ggplot object

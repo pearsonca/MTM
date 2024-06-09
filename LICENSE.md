@@ -20,6 +20,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-# Builds Upon Material From International Clinics in Infectious Disease Dynamics and Data (ICI3D)
-
-TODO: properly incorporate ICI3D license material
+# Incorporates Material From International Clinics in Infectious Disease Dynamics and Data (ICI3D)

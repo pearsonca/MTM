@@ -244,17 +244,24 @@ network_plot_RF <- function(ig) {
 
 #' @title plot summary of a series of simulations
 #'
-#' @param s_dt a `data.table`, of the same structure as returned by
+#' @param s_dt optional: a `data.table`, of the same structure as returned by
 #'   \code{\link{network_sample_reed_frost}}
+#' @param ref_dt simulation outputs to be plotted; can be created from `s_dt`,
+#' or directly provided as a `data.table` with `duration`, `final_size`, and
+#' `sample` columns
 #'
 #' @return a patchwork'd ggplot object
 #'
 #' @export
-network_plot_histograms <- function(s_dt) {
-  # assert: s_dt is ordered by t, and last entry by sample corresponds to end
+network_plot_histograms <- function(
+  s_dt,
+  ref_dt = as.data.table(s_dt)[,
+    .SD[.N, .(duration = t - 1, final_size = R)],
+    keyby = sample
+  ]
+) {
   # assert: samples is 1:N
-  ref_dt <- s_dt[, .SD[.N, .(duration = t - 1, final_size = R)], keyby = sample]
-  samples <- ref_dt[, sample[.N]]
+  samples <- ref_dt[, max(sample)]
 
   # count data.tables
   heat_dt     <- ref_dt[, .N, keyby = .(duration, final_size)]

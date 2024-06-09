@@ -7,7 +7,7 @@
 network_plot_series(s_dt, layer_order = c("S", "R", "I"))
 }
 \arguments{
-\item{s_dt}{a \code{data.table}, of the same structure as returned by
+\item{s_dt}{optional: a \code{data.table}, of the same structure as returned by
 \code{\link{network_sample_reed_frost}}}
 }
 \description{
